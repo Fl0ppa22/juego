@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Juego de Preguntas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #pregunta {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #opciones button {
+      display: block;
+      width: 200px;
+      margin: 10px auto;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #3498db;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #opciones button:hover {
+      background-color: #2980b9;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 5px;
+      border: none;
+      background-color: #2ecc71;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+  <h1>Juego de Preguntas</h1>
+  <div id="pregunta"></div>
+  <div id="opciones"></div>
+
+  <script>
+    const preguntas = [
+      {
+        pregunta: "¿Cuál es la capital de Francia?",
+        opciones: ["Londres", "París", "Roma", "Madrid"],
+        respuesta: 1
+      },
+      {
+        pregunta: "¿1+1?",
+        opciones: ["2", "10", "5", "3"],
+        respuesta: 0
+      },
+      {
+        pregunta: "¿como se llama el bot de floppa_good?",
+        opciones: ["floppita bot", "mee6", "nekotina", "???"],
+        respuesta: 0
+      },
+      {
+        pregunta: "¿que comando son lo de floppita bot?",
+        opciones: ["diversion", "raid", "economia", "memes"],
+        respuesta: 2
+      },
+      // Agrega más preguntas aquí
+    ];
+
+    let preguntaActual = 0;
+
+    function mostrarPregunta() {
+      const preguntaElem = document.getElementById("pregunta");
+      const opcionesElem = document.getElementById("opciones");
+      const preguntaActualObj = preguntas[preguntaActual];
+
+      preguntaElem.textContent = preguntaActualObj.pregunta;
+      opcionesElem.innerHTML = '';
+
+      preguntaActualObj.opciones.forEach((opcion, index) => {
+        const boton = document.createElement("button");
+        boton.textContent = opcion;
+        boton.onclick = () => verificarRespuesta(index);
+        opcionesElem.appendChild(boton);
+      });
+    }
+
+    function verificarRespuesta(respuesta) {
+      const preguntaActualObj = preguntas[preguntaActual];
+      if (respuesta === preguntaActualObj.respuesta) {
+        alert("¡Respuesta correcta!");
+        preguntaActual++;
+        if (preguntaActual < preguntas.length) {
+          mostrarPregunta();
+        } else {
+          // Redirigir a otra página cuando se termine el juego
+          window.location.href = "tictac.html";
+        }
+      } else {
+        alert("Respuesta incorrecta, intenta de nuevo.");
+      }
+    }
+
+    // Mostrar la primera pregunta al cargar la página
+    mostrarPregunta();
+  </script>
+</body>
+</html>

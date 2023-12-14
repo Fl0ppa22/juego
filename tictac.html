@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cambio de Texto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black; /* Fondo negro */
+      color: white; /* Texto blanco */
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .texto-cambiable {
+      text-align: center;
+      font-size: 32px;
+      margin-top: 50px;
+      position: relative;
+    }
+
+    #cambio-texto {
+      display: inline-block;
+      animation: cambioTexto 3s infinite;
+    }
+
+    @keyframes cambioTexto {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="texto-cambiable">
+    <p id="cambio-texto">...</p>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var textos = ["tictac", "tictac", "el tiempo suena", "pero que ases", "bueno no importa", "aca esta el codigo FjopR", "escribelo en comandos"]; // Lista de textos a mostrar
+      var indiceTexto = 0; // Índice del texto actual
+      
+      var cambioTexto = document.getElementById("cambio-texto");
+      
+      function cambiarTexto() {
+        cambioTexto.textContent = textos[indiceTexto];
+        indiceTexto = (indiceTexto + 1) % textos.length; // Avanzar al siguiente texto
+      }
+      
+      cambiarTexto(); // Mostrar el primer texto al cargar la página
+      
+      setInterval(cambiarTexto, 3000); // Cambiar el texto cada 3 segundos
+
+      setTimeout(function() {
+        window.location.href = "https://discord.gg/2YvNdxwKjt"; // Cambia "otra_pagina.html" por la URL de la página a la que quieras redirigir
+      }, 20000); // Redirigir después de 5 segundos (5000 milisegundos)
+    });
+  </script>
+</body>
+</html>
